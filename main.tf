@@ -20,7 +20,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "hextris-server" {
-    ami = data.aws_ami.latest.id
+    ami = "ami-0e731c8a588258d0d"
     instance_type = "t2.micro"
     key_name = "vockey"
     security_groups = [aws_security_group.hextris-server.name]
@@ -53,31 +53,6 @@ resource "aws_security_group" "hextris-server" {
         to_port = 0
         protocol = "-1"
         cidr_blocks = ["0.0.0.0/0"]
-    }
-}
-
-data "aws_ami" "latest" {
-    most_recent = true
-    owners = ["amazon"]
-
-    filter {
-        name = "name"
-        values = ["al2023-ami-2023*"]
-    }
-
-    filter {
-        name = "root-device-type"
-        values = ["ebs"]
-    }
-
-    filter {
-        name = "virtualization-type"
-        values = ["hvm"]
-    }
-
-    filter {
-        name = "architecture"
-        values = ["x86_64"]
     }
 }
 
