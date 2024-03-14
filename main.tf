@@ -27,7 +27,7 @@ resource "aws_instance" "hextris-server" {
     user_data = file("./serve-hextris.sh")
 
     tags = {
-        Name = "Hextris"
+        Name = "hextris"
     }
 }
 
